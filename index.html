@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="../static/affiliate_v2/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>AffiliateV2 Landing Page</title>
+    <style>
+      /* normalize css */
+
+html {
+  font-family: "Roboto", sans-serif;
+  background-color: #f1f1f4;
+  height: 100%;
+}
+
+* {
+  box-sizing: border-box;
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+}
+
+body,
+p,
+ul,
+h1 {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:active,
+a:hover {
+  outline: 0;
+}
+
+button,
+input,
+select,
+textarea {
+  color: inherit;
+  /* 1 */
+  font: inherit;
+  /* 2 */
+  margin: 0;
+  /* 3 */
+  outline: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+td,
+th,
+p,
+ul,
+h1 {
+  padding: 0;
+}
+
+* {
+  user-select: none;
+}
+
+/* !normalize css end */
+
+body {
+  height: 100%;
+  display: grid;
+  grid-template-rows: 1fr auto;
+}
+
+.home-class {
+  display: grid;
+  grid-template-columns: 10% 1fr 10%;
+  grid-template-rows: 500px auto 1fr;
+  grid-template-areas:
+    "header header header"
+    ". gridArea ."
+    ". . .";
+  position: relative;
+}
+
+.header-section {
+  grid-area: header;
+  min-width: 220px;
+  width: 100%;
+  height: 100%;
+  min-height: 500px;
+  /* background: linear-gradient(90.2deg, rgba(0, 0, 0, 0.9) 0.17%, rgba(0, 0, 0, 0) 99.84%),
+    url("../static/affiliate_v2/thumb.svg") no-repeat; */
+
+  background: linear-gradient(90.2deg, rgba(0, 0, 0, 0.9) 0.17%, rgba(0, 0, 0, 0) 99.84%),
+    url("https://affv2-urlshortener-engg-dot-bluestacks-cloud-qa.appspot.com/static/affiliate_v2/thumb.svg") no-repeat;
+  background-repeat: no-repeat;
+  background-size: cover, cover;
+  background-position: center;
+  display: grid;
+  grid-template-columns: 10% 1fr 1fr 10%;
+  grid-template-rows: 19px 66px 1fr;
+  grid-template-areas:
+    ". . . ."
+    ". logo downloadbtn ."
+    ". intro intro .";
+  align-items: center;
+}
+
+.NavBar {
+  display: grid;
+  grid-template-columns: 10% 152px 1fr 10%;
+  grid-template-areas: ". NavLogo NavBtn .";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  background: rgba(24, 27, 52, 0.6);
+  backdrop-filter: blur(24px);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+  height: 66px;
+}
+
+.NavBar-logo {
+  grid-area: NavLogo;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.NavBar-logo img {
+  width: 40vw;
+  max-width: 152px;
+}
+
+.NavBar-download-btn {
+  grid-area: NavBtn;
+  display: flex;
+  justify-content: flex-end;
+  cursor: pointer;
+}
+.NavBar-download-btn button {
+  background: #64b305;
+  padding: 6px 24px;
+  color: #fff;
+  font-size: 18px;
+  line-height: 28px;
+  align-self: center;
+  text-align: center;
+  border: 0;
+  font-weight: bold;
+}
+
+.NavBar-download-btn a,
+.NavBar-download-btn a:active,
+.NavBar-download-btn a:visited {
+  color: #fff;
+}
+
+.header-logo {
+  grid-area: logo;
+  display: none;
+}
+.header-logo img {
+  width: 40vw;
+  max-width: 152px;
+}
+
+.header-user-intro {
+  grid-area: intro;
+  display: flex;
+  justify-content: flex-start;
+  flex-flow: row nowrap;
+  align-items: center;
+  align-self: self-start;
+  column-gap: max(2em, 30px);
+  margin-top: -70px;
+  width: auto;
+  align-self: center;
+}
+
+.header-profile-pic {
+  padding: 5px;
+}
+
+.header-profile-pic img {
+  width: auto;
+  height: 143px;
+  border-radius: 50%;
+}
+
+.header-user-bs-logo {
+  display: flex;
+  flex-flow: column wrap;
+  color: #fff;
+  justify-content: center;
+}
+
+.header-user-bs-logo h2 {
+  font-weight: bold;
+  font-style: normal;
+  font-size: 42px;
+  line-height: 1.3;
+  margin-bottom: 10px;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.header-user-bs-logo p {
+  font-size: 20px;
+  line-height: 140%;
+}
+
+.header-download-btn {
+  display: flex;
+  grid-area: downloadbtn;
+  justify-content: flex-end;
+  cursor: pointer;
+  display: none;
+}
+.header-download-btn button {
+  background: #64b305;
+  padding: 10px 32px;
+  color: #fff;
+  align-self: center;
+  text-align: center;
+  border: 0;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.header-download-btn a,
+.header-download-btn a:active,
+.header-download-btn a:visited {
+  color: #fff;
+}
+
+.grid-parent {
+  grid-area: gridArea;
+  width: 100%;
+  min-width: 320px;
+  margin-top: max(-8%, -60px);
+  /* height: 100%; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, #ffffff 0%, #f1f1f4 100%);
+  padding: 24px 26px;
+  margin-bottom: 41px;
+}
+
+.img-list-grid {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  display: inline-block;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  list-style: none;
+  justify-items: center;
+  align-items: center;
+  row-gap: 44px;
+  column-gap: 24px;
+  background: black;
+}
+
+.img-list-grid li {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.img-list-grid img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  cursor: default;
+}
+
+.img-overlay {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-end;
+  align-items: center;
+  row-gap: 8px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  color: #fff;
+  background: linear-gradient(
+    359.18deg,
+    rgba(0, 0, 0, 0.9) 23.69%,
+    rgba(0, 0, 0, 0) 81.15%
+  );
+  font-style: normal;
+  top: 0;
+  left: 0;
+  transition: 0.5s ease;
+  margin: 0;
+  padding: 0;
+}
+
+.img-list-grid li:hover .img-overlay {
+  opacity: 1;
+}
+
+.img-game-detail {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  flex-flow: column nowrap;
+  padding: 0 10px;
+}
+
+.img-game-genre {
+  text-transform: uppercase;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 14px;
+  text-align: center;
+  letter-spacing: 0.07em;
+  margin-top: 8px;
+  overflow-wrap: anywhere;
+}
+
+.img-game-name {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.img-download-btn-parent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #37a8ff;
+  width: calc(100% - 29.42px);
+  margin: 14.71px;
+  margin-top: 3.67px;
+}
+
+.img-download-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #37a8ff;
+  font-size: 13.7445px;
+  line-height: 16px;
+  text-align: center;
+  letter-spacing: 2.94526px;
+  text-transform: uppercase;
+  z-index: 2;
+  border: 0;
+  height: 37.25px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.img-download-btn a,
+.img-download-btn a:visited,
+.img-download-btn a:active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  width: 100%;
+  height: 100%;
+}
+
+.featured-img {
+  position: absolute;
+  top: 11px;
+  right: 10.5px;
+  width: 24px;
+  height: 24px;
+  background: linear-gradient(180deg, #f0bb00 0%, #dfa204 100%);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.featured-img .tooltiptext {
+  visibility: hidden;
+  padding: 5px 6px;
+  background: #000000;
+  border: 0.5px solid #2e2e2e;
+  box-shadow: 0px 1px 2px rgb(0, 0, 0, 0.3);
+  color: #fff;
+  text-align: center;
+  position: absolute;
+  z-index: 1;
+  right: 110%;
+  margin-right: 3px;
+}
+
+.featured-img span {
+  font-size: 12px;
+}
+.featured-img .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent transparent black;
+}
+
+.featured-img:hover .tooltiptext {
+  visibility: visible;
+}
+
+.featured-badge {
+  background: url("../static/affiliate_v2/Star.svg");
+  background-repeat: no-repeat;
+  background-size: 16px 15.4px;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+}
+footer {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  background: #e5e5ef;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  color: #394566;
+  font-size: 14px;
+  line-height: 28px;
+  text-align: center;
+  min-width: 320px;
+}
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.footer-links a {
+  color: #394566;
+  padding: 0 17px;
+  height: 16px;
+  border-right: 1px solid #394566;
+  line-height: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-links a,
+.footer-links a:active,
+.footer-links a:visited {
+  color: #394566;
+}
+
+.footer-links a:last-child {
+  border: 0;
+}
+
+.play-store-title-text {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  visibility: visible;
+}
+
+.play-store-title-text p {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 23px;
+  text-align: center;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  color: #f4f4f4;
+}
+
+.img-wrapper:hover .play-store-title-text {
+  visibility: hidden;
+}
+
+#fallback-text {
+  display: none;
+}
+
+.mobile-navBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  z-index: 5;
+  padding: 10px;
+  width: auto;
+  justify-content: space-between;
+  background-color: rgba(24, 27, 52, 0.7);
+  backdrop-filter: blur(24px);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+  display: none;
+}
+
+.mobile-navBar-download-btn button {
+  background: #64b305;
+  padding: 8px 21px;
+  width: 218px;
+  font-size: 16px;
+  height: 40px;
+  line-height: 1.4;
+  color: #fff;
+  align-self: center;
+  text-align: center;
+  border: 0;
+  font-weight: bold;
+}
+
+.mobile-navBar-download-btn a,
+.mobile-navBar-download-btn a:active,
+.mobile-navBar-download-btn a:visited {
+  color: #fff;
+}
+
+/* **************************************************************************************** */
+/* media query below */
+
+@media only screen and (max-width: 990px) {
+  .header-section {
+    grid-template-columns: 10% 1fr 1fr 10%;
+    grid-template-rows: 19px 66px 1fr;
+    grid-template-areas:
+      ". . . ."
+      ". logo downloadbtn ."
+      ". intro intro .";
+    row-gap: 10px;
+  }
+  .header-user-bs-logo h2 {
+    font-size: 30px;
+  }
+  .header-user-intro {
+    justify-content: center;
+  }
+  .header-download-btn {
+    justify-content: flex-end;
+    align-items: flex-start;
+  }
+  .grid-parent {
+    margin-top: -15%;
+  }
+  .footer-links a,
+  .footer-links a:active,
+  .footer-links a:visited {
+    text-decoration: underline;
+  }
+}
+
+@media only screen and (max-width: 615px) {
+  .home-class {
+    grid-template-rows: 419px 1fr auto;
+  }
+  .header-user-intro {
+    flex-direction: column;
+    row-gap: 3em;
+  }
+  .home-class {
+    grid-template-columns: 1fr;
+  }
+  .header-section {
+    grid-template-columns: 10% 1fr 10%;
+    grid-template-rows: 19px 66px 1fr 66px;
+    grid-template-areas:
+      ". . ."
+      ". logo ."
+      ". intro ."
+      ". downloadbtn .";
+    background-position: 70% top;
+    background-size: cover;
+    width: max(100%, 320px);
+    min-height: 419px;
+    height: 419px;
+    row-gap: 5px;
+  }
+  .NavBar {
+    display: none;
+  }
+  .header-profile-pic img {
+    width: 120px;
+    height: 120px;
+  }
+  .header-download-btn {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+  .header-download-btn button {
+    margin-bottom: 24px;
+    height: 53px;
+  }
+  .header-logo {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+  .grid-parent {
+    margin-top: 0;
+    width: max(100%, 320px);
+    padding: 17px 16px;
+  }
+
+  .header-user-bs-logo {
+    justify-content: center;
+    align-items: center;
+  }
+  .header-user-intro {
+    margin: 0;
+    row-gap: 10px;
+  }
+  .header-user-bs-logo h2 {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 5px;
+  }
+  .header-user-bs-logo p {
+    text-align: center;
+    width: auto;
+    font-size: 16px;
+  }
+  .img-list-grid {
+    margin: 0;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 18px;
+    row-gap: 18px;
+  }
+  footer {
+    padding: 19px 9px;
+    row-gap: 7px;
+  }
+  footer p {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .footer-links {
+    flex-direction: column;
+    row-gap: 6px;
+  }
+  .footer-links a {
+    height: 26px;
+    border: 0;
+  }
+  .footer-links a:hover {
+    text-decoration: underline;
+  }
+}
+@media only screen and (max-width: 340px) {
+  .header-user-bs-logo p {
+    font-size: 14px;
+  }
+  .header-download-btn button {
+    height: 41px;
+    font-size: 15px;
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  .img-download-btn {
+    font-size: 11px;
+  }
+}
+
+@media only screen and (max-width: 380px) {
+  .img-download-btn-parent {
+    width: calc(100% - 22.65px);
+    margin: 11.35px;
+    margin-top: 3.67px;
+  }
+  .img-download-btn {
+    height: 28.85px;
+    font-size: 9px;
+  }
+}
+
+
+    </style>
+  </head>
+  <body onscroll="mobileNavBarToggler()"
+      onload="resizeIcons()"
+      onresize="resizeIcons()"
+    >
+    <div class="home-class">
+      <div class="NavBar">
+        <div class="NavBar-logo">
+          <!-- <img src="../static/affiliate_v2/Logo.svg" alt="Bluestacks Logo" /> -->
+          <img src="https://affv2-urlshortener-engg-dot-bluestacks-cloud-qa.appspot.com/static/affiliate_v2/Logo.svg" alt="Bluestacks Logo" />
+        </div>
+        <div class="NavBar-download-btn">
+          <!-- <button><a href= {{ generic_bluestacks_link }} target="_blank"> {{ download_bluestacks }} </a></button> -->
+          <button><a href= "#" target="_blank">Download BlueStacks</a></button>
+
+        </div>
+      </div>
+      <div class="header-section">
+        <div class="header-logo">
+          <img src="../static/affiliate_v2/Logo.svg" alt="Bluestacks Logo" />
+        </div>
+        <div class="header-download-btn">
+          <!-- <button><a href= {{ generic_bluestacks_link }} target="_blank"> {{ download_bluestacks }} </a></button> -->
+          <button><a href="#" target="_blank">Download BlueStacks</a></button>
+
+        </div>
+        <div class="header-user-intro">
+          <div class="header-profile-pic">
+            <!-- <img src= {{ profile_image }} alt="User Profile" /> -->
+            <img src="https://lh3.googleusercontent.com/a-/AOh14Ggk41cy6i5IftLJLYvDhn7-48dbzC0Z7yGYE20M2g=s96-c" alt="User Profile" />
+          </div>
+          <div class="header-user-bs-logo">
+            <div>
+              <!-- <h2> {{ affiliate_localized_name }} </h2> -->
+              <h2> Yoshita Arora's Picks </h2>
+              <!-- <p> {{ check_out_picks }} </p> -->
+              <p> Check out popular Android games on BlueStacks  </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mobile-navBar">
+        <div class="mobile-navBar-logo">
+          <img src="../static/affiliate_v2/mobileLogo.svg" alt="BlueStacks" />
+        </div>
+        <div class="mobile-navBar-download-btn">
+          <!-- <button><a href= {{ generic_bluestacks_link }} target="_blank"> {{ download_bluestacks }} </a></button> -->
+          <button><a href="#" target="_blank"> Download BlueStacks </a></button>
+        </div>
+      </div>
+      <div class="grid-parent">
+        <ul class="img-list-grid">
+          {% for featured in featured_apps %}
+          <li>
+            <img
+              src=  {{ featured.image }}
+              onerror="this.onerror=null; 
+              this.closest('li').setAttribute('class', 'fallback'); 
+              this.closest('li').querySelector('#fallback-text').style.display = 'block'; 
+              this.src='{{ featured.fallback_image }}';"
+            />
+            <div class="img-wrapper">
+            <div class="img-overlay">
+              <div class="img-game-detail">
+                <p class="img-game-name"> {{ featured.app_pkg }} </p>
+                <p class="img-game-genre"> {{ featured.genre }} </p>
+              </div>
+              <div class="img-download-btn-parent">
+              <button class="img-download-btn"><a href= {{ featured.download_link }}  target="_blank" > {{ download_button }} </a></button>
+              </div>
+            </div>
+            <div id="fallback-text">
+              <div class="play-store-title-text">
+                <p> {{ featured.app_pkg }} </p>
+              </div>
+            </div>
+            <div class="featured-img">
+              <span class="featured-badge"></span>
+              <span class="tooltiptext">Featured</span>   <!-- featured localization here -->
+            </div>
+          </li>
+          {% endfor %}
+          {% for apps in cpi_apps %}
+          <li>
+            <img
+              src= {{ apps.image }}
+              onerror="this.onerror=null; 
+              this.closest('li').setAttribute('class', 'fallback');
+              this.closest('li').querySelector('#fallback-text').style.display = 'block'; 
+              this.src='{{ apps.fallback_image }}';"
+            />
+            <div class="img-wrapper">
+            <div class="img-overlay">
+              <div class="img-game-detail">
+                <p class="img-game-name"> {{ apps.app_pkg }} </p>
+                <p class="img-game-genre"> {{ apps.genre }} </p>
+              </div>
+              <div class="img-download-btn-parent">
+              <button class="img-download-btn"><a href= {{ apps.download_link }}  target="_blank" > {{ download_button }} </a></button>
+              </div>
+            </div>
+            <div id="fallback-text">
+              <div class="play-store-title-text">
+                <p> {{ apps.app_pkg }} </p>
+              </div>
+            </div>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+    <footer>
+      <p>
+        {{ footer }}
+      </p>
+      <div class="footer-links">
+        <a href="https://www.bluestacks.com/terms-and-privacy.html" target="_blank"><p> {{ terms }} </p></a>
+        <a href="https://www.bluestacks.com/copyright-dispute-policy.html" target="_blank"><p> {{ copyright_policy }} </p></a>
+        <a href="https://www.bluestacks.com/terms-and-privacy.html#eu-privacy" target="_blank"><p> {{ eu_privacy }} </p></a>
+      </div>
+    </footer>
+    <script>
+
+      
+
+      function resizeIcons() {
+        var tileHeight = 0;
+        var liTag = document.getElementsByTagName("li");
+        var mp = new Map();
+        for (var i = 0; i < liTag.length; i++) {
+          if (liTag[i].className === "") {
+            if (!mp.has(liTag[i].offsetHeight)) {
+              mp.set(liTag[i].offsetHeight, 1);
+            } else {
+              mp.set(liTag[i].offsetHeight, mp.get(liTag[i].offsetHeight) + 1);
+            }
+          }
+        }
+        var num = 0;
+        for (var x of mp) {
+          if (num < x[1]) {
+            tileHeight = x[0];
+            num = Math.max(num, x[1]);
+          }
+        }
+        var tarFall = document.querySelectorAll(".fallback");
+        var n = tileHeight;
+        for (var x of tarFall) {
+          x.style.height = n.toString() + "px";
+        }
+      }
+      function mobileNavBarToggler() {
+        var mobileNav = document.querySelector(".mobile-navBar");
+        var scrollPos = window.pageYOffset;
+        var width = screen.width;
+        if (width && scrollPos && width <= 615 && scrollPos >= 419) {
+          mobileNav.style.display = "flex";
+        } else {
+          mobileNav.style.display = "none";
+        }
+      }
+    </script>
+  </body>
+</html>
